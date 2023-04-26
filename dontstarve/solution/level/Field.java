@@ -37,7 +37,6 @@ public class Field implements BaseField{
     @Override
     public boolean hasStone() {
         return color == MapColors.STONE;
-
     }
 
     /**

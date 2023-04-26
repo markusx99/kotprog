@@ -4,6 +4,9 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A pályát leíró kép betöltéséért felelő osztály.
@@ -18,6 +21,11 @@ public class Level {
      * Konstruktor, amely a megadott fájlból beolvassa a pályát.
      * @param fileName a fájl, amely a pályát tartalmazza
      */
+    public Set<String> listFilesUsingJavaIO(String dir) {
+        return Stream.of(new File(dir).listFiles())
+                .map(File::getName)
+                .collect(Collectors.toSet());
+    }
     public Level(String fileName) {
         try {
             image = ImageIO.read(new File(fileName));

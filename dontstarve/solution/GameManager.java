@@ -9,6 +9,8 @@ import prog1.kotprog.dontstarve.solution.level.Level;
 import prog1.kotprog.dontstarve.solution.level.MapColors;
 import prog1.kotprog.dontstarve.solution.utility.Position;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Random;
 
 /**
@@ -16,10 +18,11 @@ import java.util.Random;
  * Az osztály a singleton tervezési mintát valósítja meg.
  */
 public final class GameManager {
+    private Level level;
+    private int[][] map;
     /**
      * Az osztályból létrehozott egyetlen példány (nem lehet final).
      */
-    int[][]pixel;
     private static GameManager instance = new GameManager();
 
     /**
@@ -30,7 +33,10 @@ public final class GameManager {
     /**
      * Az osztály privát konstruktora.
      */
-    private GameManager() {}
+    private GameManager() {
+        level = new Level(System.getProperty("user.dir")  + "\\dontstarve\\solution\\Resources\\level.png");
+        loadLevel(level);
+    }
 
     /**
      * Az osztályból létrehozott példány elérésére szolgáló metódus.
@@ -89,12 +95,14 @@ public final class GameManager {
      * @param level a fájlból betöltött pálya
      */
     public void loadLevel(Level level) {
-        int[][] pixel = new int[level.getWidth()][level.getHeight()];
 
-            for (int x = 0; x < level.getWidth(); x++){
-                for (int y = 0; y < level.getHeight(); y++){
-                }
+        map = new int[level.getHeight()][level.getWidth()];
+
+        for (int x = 0; x < level.getWidth(); x++){
+            for (int y = 0; y < level.getHeight(); y++){
+                map[y][x] = level.getColor(x,y);
             }
+        }
         //throw new NotImplementedException();
     }
 
