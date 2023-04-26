@@ -14,6 +14,7 @@ public abstract class AbstractItem {
      * Az item mennyisége.
      */
     private int amount;
+    private int amount2;
 
     /**
      * Konstruktor, amellyel a tárgy létrehozható.
